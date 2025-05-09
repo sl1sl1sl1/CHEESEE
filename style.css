@@ -1,0 +1,194 @@
+.w-webflow-badge {
+  display: none !important;
+}
+
+@font-face {
+  font-family: 'PPNeueMontreal-Thin';
+  src: url('fonts/PPNeueMontreal-Thin.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PPNeueMontreal-Book';
+  src: url('fonts/PPNeueMontreal-Book.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PPNeueMontreal-Medium';
+  src: url('fonts/PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PPNeueMontreal-Bold';
+  src: url('fonts/PPNeueMontreal-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PPNeueMontreal-Italic';
+  src: url('fonts/PPNeueMontreal-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+body {
+    color: #FFC72C;
+    font-family: 'PPNeueMontreal-Medium', sans-serif;  
+  }
+
+.tab-item {
+    color: #FFC72C;
+    font-family: 'PPNeueMontreal-Medium', sans-serif;
+  }
+
+.dynamic-text {
+    color: #FFC72C;
+    font-family: 'PPNeueMontreal-Medium', sans-serif;
+  }
+
+.home-clone-element {
+    background-color: transparent; /* keep box transparent */
+    border-color: transparent;    /* set border color */
+    border-radius: 100px;            /* optional: round corners */
+    padding: 200px 200px;            /* optional: spacing inside */
+    display: inline-block;         /* shrink to fit content */
+  }
+
+.home-clone-element .dynamic-text {
+  color: transparent;
+  -webkit-text-stroke: 0.7px #FFC72C;
+  }
+
+.crafting-edge {
+    display: none;
+  }
+
+.bg-gray {
+    background-color: #fcefe8; /* replace this with your desired color */
+  }
+
+  .nav-item,
+  .nav-item div {
+    font-family: 'PPNeueMontreal-Medium', sans-serif;
+    text-transform: uppercase;
+  }
+ 
+.nav-mobile-top .nav_left-top div {
+  font-family: 'PPNeueMontreal-Medium', sans-serif;
+  }
+
+  .nav-mobile .tab-item {
+    color: #fcefe8;
+    font-family: 'PPNeueMontreal-Medium', sans-serif;
+  }
+  
+  .nav-mobile .tab-item.w--current {
+    color: #FFC72C;
+  }
+
+  .nav-mobile a {
+    text-decoration: none;
+    font-family: 'PPNeueMontreal-Medium', sans-serif;
+  }
+
+  .nav-mobile,
+  .nav-mobile-top {
+    background-color: #fcefe8;
+  }
+  
+  /* Optional: add hover effect if supported */
+  @media (hover: hover) {
+    .nav-mobile:hover,
+    .nav-mobile-top:hover {
+      background-color: #FFC72C;
+    }
+  }
+
+.nav_left a {
+    text-decoration: none;
+    font-family: 'PPNeueMontreal-Medium', sans-serif;
+  }
+
+.nav_left {
+    background-color: #fcefe8; /* or any color you like */
+  }
+
+.nav_right {
+    background-color: #fcefe8; /* or any color you like */
+  }
+
+.nav_left:hover {
+    background-color: #FFC72C; /* change to your desired hover color */
+  }
+
+.nav_right:hover {
+    background-color: #FFC72C; /* change to your desired hover color */
+    font-family: 'PPNeueMontreal-Medium', sans-serif;
+  }  
+
+.nav_right:hover,
+.nav_right *:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+
+  /* Default state - white text */
+.nav_left .tab-item {
+    color: #fcefe8;
+    font-family: 'PPNeueMontreal-Medium', sans-serif;
+  }
+  
+  /* Active/clicked state - black text */
+  .nav_left .tab-item.w--current {
+    color: #FFC72C;
+  }
+
+.logo {
+    background: none;
+    background-image: url('img/favicon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 32px;  /* or whatever size fits best */
+    height: 32px;
+  }
+
+  .loading-badge {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .nav-item,
+  .nav-item *,
+  .nav-item:hover,
+  .nav-item *:hover,
+  .nav-item-mask,
+  .nav-item-mask:hover,
+  .nav_right:hover,
+  .nav_right *:hover {
+    background-color: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    filter: none !important;
+    text-decoration: none !important;
+  }
+  
+
+.menu-mobile-item w-inline-block {
+  color: black;
+}
+
+.nav-item w-inline-block {
+  color: black;
+}

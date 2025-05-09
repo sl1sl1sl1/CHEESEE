@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cheese Preference Quiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    @font-face {
+      font-family: 'PPNeueMontreal-Regular';
+      src: url('fonts/PPNeueMontreal-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      font-family: 'PPNeueMontreal-Regular', sans-serif;
+      font-weight: normal;
+      color: #000000;
+      background-color: #fcefe8;
+      padding: 2em;
+      max-width: 2000px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #d98e04;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    .section p {
+      margin-bottom: 0.5em;
+      text-transform: uppercase;
+    }
+
+    .section label {
+      display: flex;
+      align-items: center;
+      margin: 0.5em 0;
+      cursor: pointer;
+    }
+
+    .section input[type="radio"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      margin-right: 0.5em;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .section input[type="radio"]:checked::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+      background-image: url('img/favicon.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 2px;
+    }
+
+    button {
+      padding: 0.4em 1em;       
+      font-size: 0.8em;
+      background-color: transparent;
+      color: rgb(0, 0, 0);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-block;
+      margin: 5em 0.5em 0 0;
+    }
+
+    button:hover {
+      background-color: transparent;
+    }
+
+    .result {
+      margin-top: 2em;
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.4em;
+      color: #d98e04;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: 100;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html">← Home</a>
+
+  <!-- Page 1 -->
+  <div class="section page active" id="page-1">
+    <div class="t1"><p>1. Texture </p></div>
+    <div class="p1">
+    <label><input type="radio" name="texture" value="Soft and creamy"> Soft and creamy</label>
+    <label><input type="radio" name="texture" value="Semi-soft or semi-firm"> Semi-soft or semi-firm</label>
+    <label><input type="radio" name="texture" value="Hard and crumbly"> Hard and crumbly</label>
+    <label><input type="radio" name="texture" value="Melt-in-your-mouth gooey"> Melt-in-your-mouth gooey</label>
+    </div>
+    <button onclick="nextPage()" class="n">NEXT →</button>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="section page" id="page-2">
+    <div class="t1"><p>2. Flavor </p></div>
+    <div class="p1">
+    <label><input type="radio" name="flavor" value="Mild and milky"> Mild and milky</label>
+    <label><input type="radio" name="flavor" value="Nutty and buttery"> Nutty and buttery</label>
+    <label><input type="radio" name="flavor" value="Sharp and tangy"> Sharp and tangy</label>
+    <label><input type="radio" name="flavor" value="Funky and intense"> Funky and intense</label>
+    </div>
+    <button onclick="prevPage()">← BACK</button>
+    <button onclick="nextPage()" class="n">NEXT →</button>
+  </div>
+
+  <!-- Page 3 -->
+  <div class="section page" id="page-3">
+    <div class="t1"><p>3. Pairing Style</p></div>
+    <div class="p1">
+    <label><input type="radio" name="pairing" value="On its own"> On its own</label>
+    <label><input type="radio" name="pairing" value="With wine or fruit"> With wine or fruit</label>
+    <label><input type="radio" name="pairing" value="Melted in dishes"> Melted in dishes</label>
+    <label><input type="radio" name="pairing" value="Cheese board"> Cheese board</label>
+    </div>
+    <button onclick="prevPage()">← BACK</button>
+    <button onclick="nextPage()" class="n">NEXT →</button>
+  </div>
+
+  <!-- Page 4 -->
+  <div class="section page" id="page-4">
+    <div class="t1"><p>4. Cultural Preference</p></div>
+    <div class="p1">
+    <label><input type="radio" name="culture" value="French"> French</label>
+    <label><input type="radio" name="culture" value="Italian"> Italian</label>
+    <label><input type="radio" name="culture" value="Swiss"> Swiss</label>
+    <label><input type="radio" name="culture" value="American classics"> American classics</label>
+    <label><input type="radio" name="culture" value="Artisanal/local"> Artisanal/local</label>
+    </div>
+    <button onclick="prevPage()">← BACK</button>
+    <button onclick="getCheese()">SUBMIT</button>
+  </div>
+
+  <!-- Result -->
+  <div class="result" id="result"></div>
+
+  <script>
+    let currentPage = 1;
+    const totalPages = 4;
+
+    function showPage(pageNum) {
+      document.querySelectorAll('.page').forEach((page, index) => {
+        page.classList.toggle('active', index === pageNum - 1);
+      });
+    }
+
+    function nextPage() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+      }
+    }
+
+    function getCheckedValue(name) {
+      const checked = document.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : null;
+    }
+
+    function getCheese() {
+      const texture = getCheckedValue("texture");
+      const flavor = getCheckedValue("flavor");
+      const pairing = getCheckedValue("pairing");
+      const culture = getCheckedValue("culture");
+
+      if (!texture || !flavor || !pairing || !culture) {
+        document.getElementById("result").innerText = "Please select one option from each category.";
+        return;
+      }
+
+      let cheese = "Brie";
+
+      if (flavor === "Funky and intense") {
+        if (culture === "French") cheese = "Époisses";
+        else if (culture === "Artisanal/local") cheese = "Washed-rind local cheese";
+        else cheese = "Blue Cheese";
+      } else if (flavor === "Sharp and tangy") {
+        if (pairing === "Cheese board") cheese = "Manchego";
+        else if (pairing === "Melted in dishes") cheese = "Fontina";
+        else cheese = "Gouda";
+        if (texture === "Hard and crumbly") cheese = "Aged Cheddar";
+      } else if (flavor === "Nutty and buttery") {
+        if (pairing === "Cheese board") cheese = "Manchego";
+        else if (pairing === "Melted in dishes") cheese = "Fontina";
+        else if (texture === "Semi-soft or semi-firm") cheese = "Gruyère";
+        else cheese = "Gouda";
+      } else if (flavor === "Mild and milky") {
+        if (pairing === "Cheese board") cheese = "Manchego";
+        else if (pairing === "Melted in dishes") cheese = "Fontina";
+        else cheese = "Gouda";
+        if (texture === "Soft and creamy") cheese = "Brie";
+      }
+
+// First, hide all pages and show the result
+document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+const result = document.getElementById("result");
+result.innerText = "Your perfect match is: ";
+const cheeseSpan = document.createElement("span");
+cheeseSpan.className = "cheese-class";
+cheeseSpan.innerText = cheese;
+result.appendChild(cheeseSpan);
+
+// Add the animation styles for cheese-class
+const style = document.createElement('style');
+style.textContent = `
+  .cheese-class {
+    position: relative;
+    display: inline-block;
+    color: #FFC72C; /* Cheese yellow color */
+    font-weight: bold;
+  }
+  
+  .cheese-trail {
+    position: absolute;
+    pointer-events: none;
+    font-weight: bold;
+    color: #FFC72C;
+    animation: cheeseScale 1s forwards, cheeseFade 1s forwards;
+    z-index: 100;
+  }
+  
+  @keyframes cheeseScale {
+    from { transform: scale(1); }
+    to { transform: scale(1.5); }
+  }
+  
+  @keyframes cheeseFade {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
+
+// Add mouse movement tracking for cheese animation
+const cheeseElement = document.querySelector('.cheese-class');
+let lastX = 0, lastY = 0;
+let mouseMoved = false;
+
+document.addEventListener('mousemove', (e) => {
+  if (!cheeseElement) return;
+  
+  const rect = cheeseElement.getBoundingClientRect();
+  const cheeseX = rect.left + rect.width/2;
+  const cheeseY = rect.top + rect.height/2;
+  
+  // Only create trail if mouse is near the cheese element
+  if (Math.abs(e.clientX - cheeseX) < 150 && Math.abs(e.clientY - cheeseY) < 150) {
+    createCheeseTrail(e.clientX, e.clientY);
+  }
+});
+
+function createCheeseTrail(x, y) {
+  const trail = document.createElement('div');
+  trail.className = 'cheese-trail';
+  trail.textContent = cheese; // Or use cheeseSpan.innerText
+  trail.style.left = `${x}px`;
+  trail.style.top = `${y}px`;
+  document.body.appendChild(trail);
+  
+  // Remove the element after animation completes
+  setTimeout(() => {
+    trail.remove();
+  }, 1000);
+}
+
+// Optional: Add hover effect
+cheeseElement.addEventListener('mouseenter', () => {
+  cheeseElement.style.transform = 'scale(1.1)';
+  cheeseElement.style.transition = 'transform 0.3s ease';
+});
+
+cheeseElement.addEventListener('mouseleave', () => {
+  cheeseElement.style.transform = 'scale(1)';
+});
+
+    }
+  </script>
+</body>
+</html>
