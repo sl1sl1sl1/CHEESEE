@@ -140,6 +140,6 @@ body {
 
 .cheese-trail {
   font-family: 'PPNeueMontreal-Thin', sans-serif;
-  font-size: 100px;
+  font-size: 200px;
   animation: cheeseScale 2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards, cheeseFade 5s ease-out forwards;
 }
